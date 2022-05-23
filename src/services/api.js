@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-    baseURL: 'https://git.heroku.com/databasetijucacars.git/'
+    baseURL: 'https://databasetijucacars.herokuapp.com/'
 });
 
 Api.interceptors.request.use(async(config)=>{
