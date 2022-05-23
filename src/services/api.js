@@ -1,15 +1,15 @@
 import axios from "axios";
 
 const Api = axios.create({
-    baseURL: 'https://databasetijucacars.herokuapp.com/'
+  baseURL: "https://databasetijucacars.herokuapp.com/",
 });
 
-Api.interceptors.request.use(async(config)=>{
-    const token = localStorage.getItem('Token')
-    if(token){
-        config.headers.Authorization = `Bearer ${token}`;
-    }
+Api.interceptors.request.use(async (config) => {
+  const token = localStorage.getItem("Token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
 
-    return config;
-})
+  return config;
+});
 export default Api;
