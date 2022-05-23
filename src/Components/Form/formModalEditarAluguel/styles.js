@@ -39,6 +39,7 @@ h1{
     color: #f9a826;
     margin-top:70px;
     font-family: 'Roboto', sans-serif;
+    font-size: 30pt;
 }
 `
 

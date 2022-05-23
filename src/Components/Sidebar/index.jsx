@@ -55,7 +55,7 @@ const Sidebar = ({ active }) => {
             if (SingleUserInfo.data.response[0].adm == 1) {
                 setBlockAdmin(false)
             }
-            
+            console.log(SingleUserInfo)
         }
         UserInfoPage()
 
