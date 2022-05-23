@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-    baseURL: 'https://databasetijucacars.herokuapp.com:4400/'
+    baseURL: 'https://databasetijucacars.herokuapp.com/'
 });
 
 Api.interceptors.request.use(async(config)=>{
