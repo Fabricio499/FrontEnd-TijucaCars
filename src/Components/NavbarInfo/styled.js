@@ -31,7 +31,6 @@ export const Container = styled.div`
     h1{
         margin:auto;
         margin-left: 33rem;
-        font-size: 30pt;
         
     }
 

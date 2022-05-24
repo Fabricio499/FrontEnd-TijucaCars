@@ -17,9 +17,8 @@ export const Container = styled.div`
         cursor:pointer;
     }
 
-    h4{
+    h1{
         margin:auto;
-        font-size: 2.5rem;
     }
 
 `;

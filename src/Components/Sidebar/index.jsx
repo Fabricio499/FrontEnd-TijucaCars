@@ -36,7 +36,7 @@ const Sidebar = ({ active }) => {
     const handleLogout = () => {
         localStorage.removeItem('UserID')
         localStorage.removeItem('Token')
-        window.location.href = "/"
+        window.location.href = "/Login"
     }
 
     const adminChecked = () => {
@@ -55,6 +55,7 @@ const Sidebar = ({ active }) => {
             if (SingleUserInfo.data.response[0].adm == 1) {
                 setBlockAdmin(false)
             }
+            
         }
         UserInfoPage()
 

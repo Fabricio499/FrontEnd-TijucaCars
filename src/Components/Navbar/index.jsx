@@ -12,7 +12,7 @@ export const Navbar = () => {
         <Container>
             <FaBars onClick={showSidebar}/>
             {sidebar && <Sidebar active={setSidebar}/>}
-            <h4>Tijuca Cars</h4>
+            <h1>Tijuca Cars</h1>
         </Container>
 
     )

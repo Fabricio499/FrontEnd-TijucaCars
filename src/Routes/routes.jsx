@@ -10,6 +10,9 @@ import { verificaToken } from '../controller/verificarToken'
 import { Login } from '../pages/login'
 import { AdminPage } from '../pages/AdminPage'
 import {Cliente} from '../pages/cliente'
+import { LadingPage } from "../pages/LadingPage";
+import {InfoPage} from "../pages/InfoPage"
+
 
 
 
@@ -29,7 +32,9 @@ export const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={Login} />
+                <Route exact path='/Login' component={Login} />
+                <Route exact path='/LadinPage' component={LadingPage} />
+                <Route exact path='/' component={InfoPage} />
                 <PrivateRoute path='/cliente' component={Cliente} />
                 <PrivateRoute path='/admin' component={AdminPage} />
             </Switch>

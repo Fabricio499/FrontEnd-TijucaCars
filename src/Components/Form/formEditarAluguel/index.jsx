@@ -1,5 +1,5 @@
 import React from "react"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify"
 import { useState, useEffect } from 'react'
 import { ButtonSubmit } from "../buttonSubmit"
 
@@ -7,7 +7,7 @@ import * as C from './styles'
 import Api from "../../../services/api"
 import moment from "moment"
 
-export const FormEditarAluguel = ({idCarro, idAluguel}) => {
+export const FormEditarAluguel = ({ idCarro, idAluguel }) => {
 
     const [qtdeDiasAlugados, setQtdeDiasAlugados] = useState(0)
     const [dataRetirada, setDataRetirada] = useState('')
@@ -32,8 +32,8 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
     }, [])
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
@@ -42,17 +42,16 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         setValorAluguel(0)
         setQtdeDiasAlugados(0)
     }, [idCarro])
-    
+
     useEffect(() => {
         dataDaReserva();
         setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
     }, [qtdeDiasAlugados])
-    
+
     function dataDaReserva() {
         const dataMomentoReserva = moment().format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
-
     }
     function onCalcularData(data, dias) {
         const dataDaEntrega = moment(new Date(dataRetirada)).add(dias, 'days')
@@ -60,7 +59,7 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         setDataEntrega(newDataEntrega)
     }
 
-    const [msgerr ,setMsgerr] = useState('')
+    const [errmsg, setErrmsg] = useState('')
 
     async function editarAluguel(
         dataReserva,
@@ -84,10 +83,8 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
 
             }
         } catch (error) {
-            console.log(error.response.data.mensagem)
-            setMsgerr(error.response.data.mensagem)
-            
-            const notifyErr = () => toast.error(msgerr, {
+            setErrmsg(error.response.data.mensagem)
+            const notifyErr = () => toast.error(errmsg, {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -96,9 +93,7 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
                 draggable: true,
                 progress: undefined,
             });
-            if(msgerr.length > 0) {
-                notifyErr()
-            }
+            notifyErr()
         }
     }
 
@@ -110,7 +105,7 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
                     <select
                         defaultValue={'DEFAULT'}
                         disabled
-                        >
+                    >
                         <option value="DEFAULT" selected>
                             {infoCar.modelo}
                         </option>
