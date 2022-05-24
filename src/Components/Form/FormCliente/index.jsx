@@ -63,7 +63,6 @@ export const FormCliente = () => {
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
-            console.log(responseInfo.data)
         }
         getSingleCar()
         setValorAluguel(0)
@@ -80,13 +79,11 @@ export const FormCliente = () => {
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
 
-        // console.log(dataReserva)
     }
     function onCalcularData(data, dias) {
         const dataDaEntrega = moment().add(dias, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
-        // console.log(qtdeDiasAlugados)
     }
 
     async function novoAluguel(
@@ -115,7 +112,6 @@ export const FormCliente = () => {
 
             }
         } catch (error) {
-            console.log(error.response.data.mensagem)
             notifyErr()
         }
     }

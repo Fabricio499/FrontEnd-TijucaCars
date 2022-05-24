@@ -1,5 +1,5 @@
 import React from "react"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect } from 'react'
 import { ButtonSubmit } from "../buttonSubmit"
 
@@ -28,16 +28,6 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         progress: undefined,
     });;
 
-    const notifyErr = () => toast.error('Você não pode executar essa operação!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
     useEffect(() => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
@@ -47,7 +37,6 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
-            console.log(responseInfo.data.response[0].modelo)
         }
         getSingleCar()
         setValorAluguel(0)
@@ -64,15 +53,14 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
 
-        // console.log(dataReserva)
     }
     function onCalcularData(data, dias) {
-        console.log(dataReserva)
         const dataDaEntrega = moment(new Date(dataRetirada)).add(dias, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
-        // console.log(qtdeDiasAlugados)
     }
+
+    const [msgerr ,setMsgerr] = useState('')
 
     async function editarAluguel(
         dataReserva,
@@ -92,13 +80,25 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
                     status: status,
                     idAluguel: idAluguel
                 })
-                console.log(response)
                 notifySucc()
 
             }
         } catch (error) {
             console.log(error.response.data.mensagem)
-            notifyErr()
+            setMsgerr(error.response.data.mensagem)
+            
+            const notifyErr = () => toast.error(msgerr, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            if(msgerr.length > 0) {
+                notifyErr()
+            }
         }
     }
 
