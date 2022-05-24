@@ -75,12 +75,13 @@ export const FormCliente = () => {
     }, [qtdeDiasAlugados])
     
     function dataDaReserva() {
-        const dataMomentoReserva = moment(new Date(dataRetirada)).format('YYYY-MM-DD')
+        const dataMomentoReserva = moment(new Date()).format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
-        onCalcularData(dataReserva, qtdeDiasAlugados)
+        
+        onCalcularData()
     }
-    function onCalcularData(data, dias) {
-        const dataDaEntrega = moment().add(dias, 'days')
+    function onCalcularData() {
+        const dataDaEntrega = moment(new Date(dataRetirada)).add(parseInt(qtdeDiasAlugados)+1, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
     }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://databasetijucacars.herokuapp.com/",
+  baseURL: "https://tijuca-cars.herokuapp.com/",
 });
 
 Api.interceptors.request.use(async (config) => {
@@ -11,5 +11,6 @@ Api.interceptors.request.use(async (config) => {
   }
 
   return config;
-});
+}) ;
 export default Api;
+// --> teste

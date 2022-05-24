@@ -74,6 +74,7 @@ export const AdminPage = () => {
             //remove a consulta de acordo com o id
         })
             .catch((error) => {
+
                 notifyErr()
             })
     }
