@@ -177,13 +177,10 @@ export const FormCliente = ({buscarNovamente}) => {
                 <div className='campo-input'>
                     <label>Quantidade de Dias</label>
                     <input
-                        type="number"
+                        type="text"
                         value={qtdeDiasAlugados}
-                        min="1"
-                        max="30"
                         maxlength="3" pattern="([0-9]{3})"
                         onChange={e => setQtdeDiasAlugados(e.target.value)}
-                        onKeyDown={(e) => e.preventDefault()}
                         onKeyPress={onlynumber}
                     />
                 </div>

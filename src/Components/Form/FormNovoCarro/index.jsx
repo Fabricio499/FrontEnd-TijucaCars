@@ -53,18 +53,6 @@ export const FormNovoCarro = ({ closeModalCarro }) => {
         }
     }
 
-    //função para aceita apenas numeros no input
-    function onlynumber(e) {
-        var theEvent = e || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /^[0-9.]+$/;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault) theEvent.preventDefault();
-        }
-    }
-
     return (
         <C.FormNovoCarroContainer>
             <div className='form-newCar'>
@@ -78,7 +66,7 @@ export const FormNovoCarro = ({ closeModalCarro }) => {
                 </div>
                 <div className='campo-info'>
                     <label>Ano:</label>
-                    <input type="text" value={ano} onKeyPress={onlynumber} onChange={e => setAno(e.target.value)} />
+                    <input type="number" value={ano}  onChange={e => setAno(e.target.value)} />
                 </div>
                 <div className='campo-info'>
                     <label>Cor:</label>
@@ -86,7 +74,7 @@ export const FormNovoCarro = ({ closeModalCarro }) => {
                 </div>
                 <div className='campo-info'>
                     <label>Valor do Aluguel:</label>
-                    <input type="text" value={valor} onKeyPress={onlynumber} onChange={e => setValor(e.target.value)} />
+                    <input type="number" value={valor}  onChange={e => setValor(e.target.value)} />
                 </div>
             </div>
             <div className='input-adicionar'>

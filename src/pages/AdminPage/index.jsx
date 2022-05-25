@@ -156,6 +156,7 @@ export const AdminPage = () => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
+                limit={3}
             />
         </C.ContainerAdminPage>
     )

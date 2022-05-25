@@ -82,18 +82,6 @@ export const FormNovoCliente = () => {
 
     }
 
-    //função que permite digitar apenas numeros
-    function onlynumber(e) {
-        var theEvent = e || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /^[0-9.]+$/;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault) theEvent.preventDefault();
-        }
-    }
-
     return (
         <C.FormNovoClienteContainer>
             <div className='form-newcliente'>
@@ -107,11 +95,11 @@ export const FormNovoCliente = () => {
                 </div>
                 <div className='campo-info'>
                     <label>CNH:</label>
-                    <input type="text" value={cnh} onKeyPress={onlynumber} onChange={e => setCnh(e.target.value)} maxLength='11' />
+                    <input type="number" value={cnh} onChange={e => setCnh(e.target.value)} maxLength='11' />
                 </div>
                 <div className='campo-info'>
                     <label>Telefone:</label>
-                    <input type="text" value={telefone} onKeyPress={onlynumber} onChange={e => setTelefone(e.target.value) } maxLength='9'  />
+                    <input type="number" value={telefone} onChange={e => setTelefone(e.target.value) } maxLength='9'  />
                 </div>
                 <div className='campo-info'>
                     <label>E-Mail:</label>

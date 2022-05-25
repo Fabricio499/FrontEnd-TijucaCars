@@ -125,11 +125,7 @@ export const FormEditarAluguel = ({ idCarro, idAluguel }) => {
                     <input
                         type="number"
                         value={qtdeDiasAlugados}
-                        min="1"
-                        max="30"
-                        maxlength="3" pattern="([0-9]{3})"
                         onChange={e => setQtdeDiasAlugados(e.target.value)}
-                        onKeyDown={(e) => e.preventDefault()}
                     />
                 </div>
                 <div className='price-div'>
@@ -160,6 +156,7 @@ export const FormEditarAluguel = ({ idCarro, idAluguel }) => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
+                limit={1}
             />
         </C.ContainerFormEdit>
     )
