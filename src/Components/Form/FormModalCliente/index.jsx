@@ -2,7 +2,7 @@
 import {Header, CloseIcon, Conteiner, Overlay} from './styles'
 import {FormCliente} from '../FormCliente'
 
-export const FormModalCliente = ({closeModal}) => {
+export const FormModalCliente = ({closeModal, buscarNovamente}) => {
 
     return (
             <Overlay>
@@ -13,7 +13,9 @@ export const FormModalCliente = ({closeModal}) => {
                     <CloseIcon  />
                 </button>
             </Header>
-            <FormCliente/>
+            <FormCliente 
+                buscarNovamente={buscarNovamente}
+            />
             </Conteiner>
             </Overlay>
     )

@@ -44,13 +44,11 @@ export const AdminPage = () => {
     // --> Capturar informações do cliente e validar se pode acessar essa rota!
     useEffect(() => {
         const idUser = localStorage.getItem('UserID')
-
         async function UserInfoPage() {
             const SingleUserInfo = await Api.get(`clientes/${idUser}`)
-            if (SingleUserInfo.data.response[0].adm == 0) {
+            if (SingleUserInfo.data.response[0].adm != 1) {
                 window.location.href = "/cliente"
             }
-
         }
         UserInfoPage()
 

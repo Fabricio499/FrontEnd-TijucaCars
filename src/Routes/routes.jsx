@@ -12,6 +12,7 @@ import { AdminPage } from '../pages/AdminPage'
 import {Cliente} from '../pages/cliente'
 import { LadingPage } from "../pages/LadingPage";
 import {InfoPage} from "../pages/InfoPage"
+import { NoContent } from "../pages/NoContent";
 
 
 
@@ -37,6 +38,7 @@ export const Routes = () => {
                 <Route exact path='/' component={InfoPage} />
                 <PrivateRoute path='/cliente' component={Cliente} />
                 <PrivateRoute path='/admin' component={AdminPage} />
+                <Route path='' component={NoContent} />
             </Switch>
         </BrowserRouter>
     )

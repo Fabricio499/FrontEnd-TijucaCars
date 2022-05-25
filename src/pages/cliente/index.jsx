@@ -13,6 +13,12 @@ import { NoContent } from '../../Components/NoContent'
 
 export const Cliente = () => {
     
+    // --> Buscar novamento meus alugueis com o stado
+    const [buscar, setBuscar] = useState(false)
+    function buscarNovamente(){
+        setBuscar(true)
+    }
+
     // --> Buscar e setar alugueis do usuario especifico
     const [meusAlugueis, setMeusAlugueis] = useState('')
     useEffect(()=>{
@@ -22,7 +28,7 @@ export const Cliente = () => {
             setMeusAlugueis(meusAlugueisGet.sort((a,b)=>{return a.statusAluguel - b.statusAluguel}))
         }
         buscarMeusAlugueis();
-    }, [])
+    }, [buscar])
 
 
     const [openModal, setOpenModal] = useState(false)
@@ -69,6 +75,7 @@ export const Cliente = () => {
                     >
                         <FormModalCliente
                             closeModal={fecharModal}
+                            buscarNovamente={buscarNovamente}
                         />
                     </Modal> 
                 </div>

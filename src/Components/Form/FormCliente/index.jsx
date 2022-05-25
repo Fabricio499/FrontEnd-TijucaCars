@@ -11,7 +11,7 @@ import moment from "moment"
 
 import Api from '../../../services/api'
 
-export const FormCliente = () => {
+export const FormCliente = ({buscarNovamente}) => {
 
     const [cars, setCars] = useState([])
     const [idCarro, setIdCarro] = useState('')
@@ -44,6 +44,16 @@ export const FormCliente = () => {
         progress: undefined,
     });
 
+    const notifyNd = () => toast.error('Campo Vazio!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
     useEffect(() => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
@@ -58,8 +68,8 @@ export const FormCliente = () => {
         dataCar();
     }, [])
 
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
@@ -68,20 +78,20 @@ export const FormCliente = () => {
         setValorAluguel(0)
         setQtdeDiasAlugados(0)
     }, [idCarro])
-    
+
     useEffect(() => {
         dataDaReserva();
         setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
     }, [qtdeDiasAlugados])
-    
+
     function dataDaReserva() {
         const dataMomentoReserva = moment(new Date()).format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
-        
+
         onCalcularData()
     }
     function onCalcularData() {
-        const dataDaEntrega = moment(new Date(dataRetirada)).add(parseInt(qtdeDiasAlugados)+1, 'days')
+        const dataDaEntrega = moment(new Date(dataRetirada)).add(parseInt(qtdeDiasAlugados) + 1, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
     }
@@ -109,15 +119,20 @@ export const FormCliente = () => {
                     statusAluguel: statusAluguel
                 })
                 notifySucc()
-
+                buscarNovamente()
+                console.log(response)
+            }
+            else {
+                notifyNd()
             }
         } catch (error) {
             notifyErr()
+            console.log(error)
         }
     }
 
-      //função para aceita apenas numeros no input
-      function onlynumber(e) {
+    //função para aceita apenas numeros no input
+    function onlynumber(e) {
         var theEvent = e || window.event;
         var key = theEvent.keyCode || theEvent.which;
         key = String.fromCharCode(key);
@@ -136,7 +151,7 @@ export const FormCliente = () => {
                     <select
                         onChange={e => setIdCarro(e.target.value)}
                         defaultValue={'DEFAULT'}
-                        >
+                    >
                         <option value="DEFAULT" selected>
                             selecione um modelo
                         </option>
